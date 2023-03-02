@@ -26,5 +26,44 @@ void TestArray()
     Console.WriteLine(contador);
 }
 
-TestArray();
+void TentarBuscarPalavra()
+{
+    string[] arraydePalavras = new string[5];
+    for (int i = 0; i < arraydePalavras.Length; i++)
+    {
+        Console.Write($"Digite {i + 1} Palavra: ");
+        arraydePalavras[i] = Console.ReadLine();
+    }
+
+    Console.Write("Digite a palavra a ser encontrada: ");
+    string busca = Console.ReadLine();
+
+    foreach (string palavra in arraydePalavras)
+    {
+        // Versão mais complexa
+        /*
+        int indexo = Array.IndexOf(arraydePalavras, palavra);
+        if (palavra.ToLower() == busca.ToLower())
+        {
+            Console.WriteLine($"Voçê digitiou {busca} e foi achada {palavra} e o indexo da palavra é {indexo}.");
+            break;
+        }
+        */
+
+        if (palavra.Equals(busca))
+        {
+            Console.WriteLine($"Palavra encontrada = {busca}");
+            break;
+        }
+        /*
+        else
+        {
+            Console.WriteLine("Palavra não encontrada");
+        }
+        */
+    }
+}
+
+TentarBuscarPalavra();
+
 
