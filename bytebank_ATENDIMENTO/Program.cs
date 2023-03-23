@@ -101,8 +101,8 @@ void TestaArrayDeContasCorrentes()
     var contaDoAndre = new ContaCorrente(963, "123456-X");
     listaDeContas.Adicionar(contaDoAndre);
     //listaDeContas.ExibeLista();
-    //Console.WriteLine("============");
     //listaDeContas.Remover(contaDoAndre);
+    //Console.WriteLine("============");
     //listaDeContas.ExibeLista();
 
     for (int i = 0; i < listaDeContas.Tamanho; i++)
@@ -113,7 +113,7 @@ void TestaArrayDeContasCorrentes()
 }
 
 //TestaArrayDeContasCorrentes();
-#endregion 
+#endregion
 
 #region Exemplos de uso do List
 //Generica<int> teste1 = new Generica<int>();
@@ -263,6 +263,15 @@ void PesquisarContas()
                 Console.ReadKey();
                 break;
             }
+        case 3:
+            {
+                Console.Write("Informe o Numero da Agência: ");
+                int _numeroAgencia = int.Parse(Console.ReadLine());
+                var contasPorAgencia = ConsultaPorAgencia(_numeroAgencia);
+
+                Console.ReadLine();
+                break;
+            }
         default:
             Console.WriteLine("Opção não implementada.");
             break;
@@ -270,31 +279,39 @@ void PesquisarContas()
 
 }
 
+object ConsultaPorAgencia(int numeroAgencia)
+{
+    throw new NotImplementedException();
+}
+
 ContaCorrente ConsultaPorCPFTitular(string? cpf)
 {
-    ContaCorrente conta = null;
-    for (int i = 0; i < _listaDeContas.Count; i++)
-    {
-        if (_listaDeContas[i].Titular.Cpf.Equals(cpf))
-        {
-            conta = _listaDeContas[i];
-        }
-    }
-    return conta;
+    // ContaCorrente conta = null;
+    // for (int i = 0; i < _listaDeContas.Count; i++)
+    // {
+    //     if (_listaDeContas[i].Titular.Cpf.Equals(cpf))
+    //     {
+    //         conta = _listaDeContas[i];
+    //     }
+    // }
+    // return conta;
+
+    return _listaDeContas.Where(conta => conta.Titular.Cpf == cpf).FirstOrDefault();
 }
 
 ContaCorrente ConsultaPorNumeroConta(string? numeroConta)
 {
-    ContaCorrente conta = null;
-    for (int i = 0; i < _listaDeContas.Count; i++)
-    {
-        if (_listaDeContas[i].Conta.Equals(numeroConta))
-        {
-            conta = _listaDeContas[i];
-        }
-    }
+    // ContaCorrente conta = null;
+    // for (int i = 0; i < _listaDeContas.Count; i++)
+    // {
+    //     if (_listaDeContas[i].Conta.Equals(numeroConta))
+    //     {
+    //         conta = _listaDeContas[i];
+    //     }
+    // }
+    // return conta;
 
-    return conta;
+    return _listaDeContas.Where(conta => conta.Conta == numeroConta).FirstOrDefault();
 }
 
 void OrdenarContas()
