@@ -142,7 +142,7 @@
                    $"Saldo da Conta: {this.Saldo} \n" +
                    $"Titular da Conta: {this.Titular.Nome} \n" +
                    $"CPF do Titular  : {this.Titular.Cpf} \n" +
-                   $"Profissão do Titular: { this.Titular.Profissao}";
+                   $"Profissão do Titular: { this.Titular.Profissao}\n\n";
         }
 
 

@@ -242,7 +242,8 @@ void PesquisarContas()
     Console.WriteLine("===    PESQUISAR CONTAS     ===");
     Console.WriteLine("===============================");
     Console.WriteLine("\n");
-    Console.Write("Deseja pesquisar por (1) NUMERO DA CONTA ou (2)CPF TITULAR ? ");
+    Console.Write("Deseja pesquisar por (1) NUMERO DA CONTA ou (2) CPF TITULAR " +
+        "(3) NUMERO DA AGENCIA : ");
     switch (int.Parse(Console.ReadLine()))
     {
         case 1:
@@ -268,6 +269,7 @@ void PesquisarContas()
                 Console.Write("Informe o Numero da Agência: ");
                 int _numeroAgencia = int.Parse(Console.ReadLine());
                 var contasPorAgencia = ConsultaPorAgencia(_numeroAgencia);
+                ExibirListaDeContas(contasPorAgencia);
 
                 Console.ReadLine();
                 break;
@@ -279,10 +281,31 @@ void PesquisarContas()
 
 }
 
-object ConsultaPorAgencia(int numeroAgencia)
+void ExibirListaDeContas(List<ContaCorrente> contasPorAgencia)
 {
-    throw new NotImplementedException();
+    if(contasPorAgencia==null)
+    {
+        Console.WriteLine("... A consulta não retornou dados ...");
+    }
+    else
+    {
+        foreach (var item in contasPorAgencia)
+        {
+            Console.WriteLine(item.ToString());
+        }
+    }
 }
+
+List<ContaCorrente> ConsultaPorAgencia(int numeroAgencia)
+{
+    var consulta = (
+        from conta in _listaDeContas
+        where conta.Numero_agencia == numeroAgencia
+        select conta ).ToList();
+
+    return consulta;
+}
+
 
 ContaCorrente ConsultaPorCPFTitular(string? cpf)
 {
